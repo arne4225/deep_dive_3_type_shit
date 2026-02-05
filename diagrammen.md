@@ -15,3 +15,10 @@ sequenceDiagram
     PHP_App->>Database: INSERT post
     Database-->>PHP_App: OK
     PHP_App-->>Browser: Redirect naar overzicht
+
+## Database-relaties
+```mermaid
+erDiagram
+    USERS ||--o{ POSTS : writes
+    POSTS ||--o{ POST_TAGS : has
+    TAGS ||--o{ POST_TAGS : contains
