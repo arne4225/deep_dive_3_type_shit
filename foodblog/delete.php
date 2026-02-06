@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../config/database.php';
-require __DIR__ . '/../auth/auth.php';
+require __DIR__ . '/database.php';
+require __DIR__ . '/auth.php';
 
 requireLogin(); // alleen ingelogd
 
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="post">
         <button type="submit">Ja, verwijderen</button>
-        <a href="/foodblog/posts/show.php?id=<?= $postId ?>">Nee, terug</a>
+        <a href="show.php?id=<?= $postId ?>">Nee, terug</a>
     </form>
 
 </body>

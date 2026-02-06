@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../config/database.php';
-require __DIR__ . '/../auth/auth.php';
+require __DIR__ . '/database.php';
+require __DIR__ . '/auth.php';
 
 $postId = (int)($_GET['id'] ?? 0);
 if ($postId <= 0) {
@@ -15,6 +15,7 @@ if ($postId <= 0) {
 $sql = "
     SELECT
         p.id,
+        p.user_id,
         p.title,
         p.content,
         p.created_at,
@@ -44,7 +45,7 @@ if (!$post) {
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($post['title']) ?> - Foodblog</title>
-    <link rel="stylesheet" href="/foodblog/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="show-post-page">
@@ -52,13 +53,13 @@ if (!$post) {
     <header>
         <h1>Foodblog</h1>
         <p>
-            <a href="/foodblog/index.php">Home</a>
+            <a href="index.php">Home</a>
             <?php if (isset($_SESSION['user_id'])): ?>
                 |
-                <a href="/foodblog/auth/logout.php">Uitloggen</a>
+                <a href="logout.php">Uitloggen</a>
             <?php else: ?>
                 |
-                <a href="/foodblog/auth/login.php">Inloggen</a>
+                <a href="login.php">Inloggen</a>
             <?php endif; ?>
         </p>
     </header>
@@ -88,11 +89,11 @@ if (!$post) {
 
             <?php if (isset($_SESSION['user_id']) && (int)$_SESSION['user_id'] === (int)$post['user_id']): ?>
                 <p>
-                    <a href="/foodblog/posts/edit.php?id=<?= $post['id'] ?>">
+                    <a href="edit.php?id=<?= $post['id'] ?>">
                         ✏️ Bewerken
                     </a>
                     |
-                    <a href="/foodblog/posts/delete.php?id=<?= $post['id'] ?>">
+                    <a href="delete.php?id=<?= $post['id'] ?>">
                         🗑️ Verwijderen
                     </a>
                 </p>

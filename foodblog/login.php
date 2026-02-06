@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../config/database.php';
-require __DIR__ . '/../config/session.php';
+require __DIR__ . '/database.php';
+require __DIR__ . '/session.php';
 
 $errors = [];
 
@@ -15,12 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Gebruikersnaam en wachtwoord zijn verplicht.';
     } else {
         $stmt = $pdo->prepare(
-            'SELECT id, password_hash FROM users WHERE username = :username'
+            'SELECT id, password FROM users WHERE username = :username'
         );
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch();
 
-        if (!$user || !password_verify($password, $user['password_hash'])) {
+        if (!$user || !password_verify($password, $user['password'])) {
             $errors[] = 'Ongeldige inloggegevens.';
         } else {
             // Login succesvol → sessie vastleggen
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $username;
 
-            header('Location: /foodblog/index.php');
+            header('Location: index.php');
             exit;
         }
     }

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-require __DIR__ . '/../config/session.php';
+require __DIR__ . '/session.php';
 
 $_SESSION = [];
 session_destroy();
 
-header('Location: /foodblog/auth/login.php');
+header('Location: login.php');
 exit;

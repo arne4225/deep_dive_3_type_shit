@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../config/database.php';
-require __DIR__ . '/../auth/auth.php';
+require __DIR__ . '/database.php';
+require __DIR__ . '/auth.php';
 
 requireLogin(); // Alleen ingelogd
 
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         }
 
-        header('Location: /foodblog/posts/show.php?id=' . $postId);
+        header('Location: show.php?id=' . $postId);
         exit;
     }
 }
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Opslaan</button>
     </form>
 
-    <p><a href="/foodblog/posts/show.php?id=<?= $postId ?>">Terug naar post</a></p>
+    <p><a href="show.php?id=<?= $postId ?>">Terug naar post</a></p>
 
 </body>
 

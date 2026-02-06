@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../config/database.php';
-require __DIR__ . '/../auth/auth.php';
+require __DIR__ . '/database.php';
+require __DIR__ . '/auth.php';
 
 requireLogin(); // 🔒 alleen ingelogde users
 
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-        header('Location: /foodblog/index.php');
+        header('Location: index.php');
         exit;
     }
     $selectedTags = $_POST['tags'] ?? [];
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Post opslaan</button>
     </form>
 
-    <p><a href="/foodblog/index.php">Terug naar overzicht</a></p>
+    <p><a href="index.php">Terug naar overzicht</a></p>
 
 </body>
 

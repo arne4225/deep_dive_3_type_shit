@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-require __DIR__ . '/../config/database.php';
+require __DIR__ . '/database.php';
 
 $errors = [];
 $success = false;
@@ -34,13 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // User opslaan
             $stmt = $pdo->prepare(
-                'INSERT INTO users (username, password_hash)
-                 VALUES (:username, :password_hash)'
+                'INSERT INTO users (username, password)
+                 VALUES (:username, :password)'
             );
 
             $stmt->execute([
                 'username' => $username,
-                'password_hash' => $passwordHash
+                'password' => $passwordHash
             ]);
 
             $success = true;
@@ -89,7 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Account aanmaken</button>
     </form>
-
+    <br>
+    <a href='login.php'>
+        <button>terug naar inlog</button>
+    </a>
 </body>
 
 </html>

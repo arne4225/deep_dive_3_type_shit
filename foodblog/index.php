@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/config/database.php';
-require __DIR__ . '/config/session.php';
+require __DIR__ . '/database.php';
+require __DIR__ . '/session.php';
 
 // Query basis
 $sql = "
@@ -70,15 +70,15 @@ $posts = $stmt->fetchAll();
             <p>
                 Ingelogd als <strong><?= htmlspecialchars($_SESSION['username']) ?></strong>
                 |
-                <a href="/foodblog/posts/create.php">➕ Nieuwe post</a>
+                <a href="create.php">➕ Nieuwe post</a>
                 |
-                <a href="/foodblog/auth/logout.php">Uitloggen</a>
+                <a href="logout.php">Uitloggen</a>
             </p>
         <?php else: ?>
             <p>
-                <a href="/foodblog/auth/login.php">Inloggen</a>
+                <a href="login.php">Inloggen</a>
                 |
-                <a href="/foodblog/auth/signup.php">Account maken</a>
+                <a href="signup.php">Account maken</a>
             </p>
         <?php endif; ?>
     </header>
@@ -133,7 +133,7 @@ $posts = $stmt->fetchAll();
                     </p>
                 <?php endif; ?>
 
-                <a href="/foodblog/posts/show.php?id=<?= $post['id'] ?>">
+                <a href="show.php?id=<?= $post['id'] ?>">
                     Lees meer →
                 </a>
             </article>
